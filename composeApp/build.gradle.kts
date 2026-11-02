@@ -95,3 +95,13 @@ compose.desktop {
         }
     }
 }
+
+tasks.register<JavaExec>("readmeScreenshots") {
+    group = "documentation"
+    description = "Renders the app offscreen and writes the README screenshots to docs/images."
+    val desktopTest = kotlin.jvm("desktop").compilations["test"]
+    dependsOn(desktopTest.compileTaskProvider)
+    classpath = files(desktopTest.output.allOutputs, desktopTest.runtimeDependencyFiles)
+    mainClass.set("com.example.diceroller.ReadmeScreenshotsKt")
+    args(rootProject.file("docs/images").absolutePath)
+}

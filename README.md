@@ -3,6 +3,12 @@
 A small dice-rolling app built with [Compose Multiplatform](https://www.jetbrains.com/compose-multiplatform/).
 Tap **Roll** and the die tumbles, flicks through faces and lands on a random number from 1 to 6.
 
+<p align="center">
+  <img src="docs/images/rolling.png" alt="The die tumbling mid-roll, with the Roll button disabled" width="260">
+  &nbsp;&nbsp;
+  <img src="docs/images/rolled.png" alt="The die landed, with the Roll button ready again" width="260">
+</p>
+
 One shared Kotlin codebase runs on:
 
 | Platform | Status |
@@ -61,6 +67,16 @@ The dice logic is tested in shared code and runs on every platform:
 ./gradlew :composeApp:desktopTest :composeApp:testDebugUnitTest :composeApp:wasmJsTest
 ```
 
+## Screenshots
+
+The images above are rendered offscreen from the shared UI, not captured by hand. Regenerate them after UI changes with:
+
+```bash
+./gradlew :composeApp:readmeScreenshots
+```
+
+This writes `docs/images/rolling.png` and `docs/images/rolled.png`. The landed face is random, so it changes each run.
+
 ## iOS
 
 The Kotlin side is ready: `MainViewController()` in `iosMain` returns a `UIViewController` hosting the app.
@@ -77,6 +93,7 @@ composeApp/src/
 │   ├── kotlin/…/Dice.kt         Dice roll logic
 │   └── composeResources/        Dice vector images and strings
 ├── commonTest/                  Shared unit tests
+├── desktopTest/                 README screenshot generator
 ├── androidMain/                 MainActivity, manifest, launcher icons
 ├── desktopMain/                 Desktop window entry point
 ├── wasmJsMain/                  Browser entry point and index.html
