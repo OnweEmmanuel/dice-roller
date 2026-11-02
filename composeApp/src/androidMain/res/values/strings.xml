@@ -1,0 +1,4 @@
+<resources>
+    <!-- Launcher label; in-app strings live in commonMain/composeResources. -->
+    <string name="app_name">Dice Roller</string>
+</resources>
